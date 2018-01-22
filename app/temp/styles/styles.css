@@ -1,0 +1,9 @@
+body {
+	-webkit-columns: 300px 2;
+	        columns: 300px 2;
+	color: #2f5572;
+}
+
+.box a {
+		display: block;
+	}
