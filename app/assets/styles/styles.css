@@ -1,12 +1,11 @@
-$mainBlue: #2f5572;
+/* gulp lets us easily import this npm */
+@import "normalize.css";
 
-body {
-	columns: 300px 2;
-	color: $mainBlue;
-}
+/* import module. "_" means partial file */
+@import "base/_variables";
+@import "base/_global";
+@import "base/_mixins";
 
-.box {
-	a {
-		display: block;
-	}
-}
+@import "modules/_large-hero";
+@import "modules/_btn";
+
