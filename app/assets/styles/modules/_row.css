@@ -1,0 +1,50 @@
+.row {
+
+	@mixin clearFix;
+
+	/* parent-level correction
+	parent wrapper has overflow: hidden
+	neg margin matches padding amount */
+	&--gutters {
+		margin-right: -65px;
+	}
+
+	/* select all direct div children 
+	give right gutter to each col */
+	&--gutters > div {
+		padding-right: 65px;
+
+	}
+
+	&--b-margin-until-medium {
+		margin-bottom: 1rem;
+	}
+
+	@mixin atMedium {
+		&__medium-4 {
+			float: left;
+			width: 33.33%;
+		}
+
+		&__medium-4--larger {
+			float: left;
+			width: 37%;
+		}
+
+		&__medium-8 {
+			float: left;
+			width: 66.66%;
+		}
+
+		&__medium-8--smaller {
+			float: left;
+			width: 63%;
+		}
+
+		&--b-margin-until-medium {
+			margin-bottom: 0;
+		}
+	}
+
+
+}
