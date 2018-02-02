@@ -5,14 +5,15 @@ var
 	cssvars = require('postcss-simple-vars'),
 	nested = require('postcss-nested'),
 	cssimport = require('postcss-import'),
-	mixins = require('postcss-mixins')
+	mixins = require('postcss-mixins'),
+	hexrgba = require('postcss-hexrgba')
 ;
 
 gulp.task('styles', function() {
 	console.log('\nGulp is watching styles.');
 
 	return gulp.src('./app/assets/styles/styles.css')
-		.pipe( postcss([cssimport, mixins, cssvars, nested, autoprefixer]) )
+		.pipe( postcss([cssimport, mixins, cssvars, nested, hexrgba, autoprefixer]) )
 		// handle erroring with emit end instead of full crash
 		.on('error', function(errorMsg) {
 			console.log(errorMsg.toString);
