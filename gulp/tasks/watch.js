@@ -44,6 +44,7 @@ gulp.task('cssinject', ['styles'], function() {
 });
 
 gulp.task('scriptsRefresh', ['scripts'], function() {
+	console.log("Gulp is watching scripts.\n");
 	browsersync.reload();
 });
 
