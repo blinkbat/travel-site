@@ -924,6 +924,7 @@ a {
 		top: 10px;
 		right: 10px;
 		z-index: 10;
+		cursor: pointer;
 
 	}
 .site-header__menu-icon::before {
@@ -1079,6 +1080,14 @@ a {
 			font-size: 1rem;
 			background-color: transparent
 	}
+
+			.primary-nav a.is-current-link {
+				color: #d59541;
+			}
+
+			.primary-nav a:hover {
+				opacity: .8;
+			}
 	}
 .reveal-item {
 	opacity: 0;
