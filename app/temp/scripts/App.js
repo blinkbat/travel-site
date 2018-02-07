@@ -11319,24 +11319,30 @@ var StickyHeader = function () {
 		_classCallCheck(this, StickyHeader);
 
 		this.siteHeader = (0, _jquery2.default)(".site-header");
-
 		this.headerTrigger = (0, _jquery2.default)(".large-hero__subtitle");
-
-		// call method on page load
-		this.createHeaderWaypoint();
-
-		this.pageSections = (0, _jquery2.default)(".page-section");
-
-		this.createPageSectionWaypoints();
-
-		// smooth scroll broken?
-		//this.addSmoothScroll();
 
 		// grab all links in nav
 		this.headerLinks = (0, _jquery2.default)(".primary-nav a");
+
+		// grab lazyload imgs
+		this.lazyImages = (0, _jquery2.default)(".lazyload");
+		this.pageSections = (0, _jquery2.default)(".page-section");
+
+		// call method on page load. always call after selectors!!! (duh)
+		this.createHeaderWaypoint();
+		this.createPageSectionWaypoints();
+		this.refreshWaypoints();
+		this.addSmoothScroll();
 	}
 
 	_createClass(StickyHeader, [{
+		key: 'refreshWaypoints',
+		value: function refreshWaypoints() {
+			this.lazyImages.on('load', function () {
+				Waypoint.refreshAll();
+			});
+		}
+	}, {
 		key: 'addSmoothScroll',
 		value: function addSmoothScroll() {
 			this.headerLinks.smoothScroll();

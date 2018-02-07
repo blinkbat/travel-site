@@ -5,21 +5,28 @@ import smoothScroll from 'jquery-smooth-scroll';
 class StickyHeader {
 	constructor() {
 		this.siteHeader = $(".site-header");
-
 		this.headerTrigger = $(".large-hero__subtitle");
-
-		// call method on page load
-		this.createHeaderWaypoint();
-
-		this.pageSections = $(".page-section");
-
-		this.createPageSectionWaypoints();
-
-		// smooth scroll broken?
-		//this.addSmoothScroll();
 
 		// grab all links in nav
 		this.headerLinks = $(".primary-nav a");
+
+		// grab lazyload imgs
+		this.lazyImages = $(".lazyload");
+		this.pageSections = $(".page-section");
+
+		// call method on page load. always call after selectors!!! (duh)
+		this.createHeaderWaypoint();
+		this.createPageSectionWaypoints();
+		this.refreshWaypoints();
+		this.addSmoothScroll();
+
+	}
+
+	refreshWaypoints() {
+		this.lazyImages.on('load', function() {
+			Waypoint.refreshAll();
+
+		});
 	}
 
 	addSmoothScroll() {

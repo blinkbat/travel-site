@@ -7,6 +7,8 @@
   <meta name="keywords" content="Travel planning, travel bundles, travel escapes, affordable travel">
   <meta name="description" content="Your clarity. One trip away. We create soul restoring journeys that inspire you to be you.">
   <link rel="stylesheet" href="temp/styles/styles.css">
+
+  <script src="/temp/scripts/Vendor.js"></script>
 </head>
 <body>
 
@@ -71,7 +73,7 @@
       </h3>
 
       <div class="wrapper wrapper--medium wrapper--b-margin">
-        <img src="assets/images/first-trip.jpg" alt="Couple walking down a street.">
+        <img data-src="assets/images/first-trip.jpg" alt="Couple walking down a street." class="lazyload">
       </div>
 
       <div class="row row--gutters">
@@ -79,7 +81,7 @@
           <picture>
             <source srcset="assets/images/our-start.jpg" media="(min-width: 1020px)">
             <source srcset="assets/images/our-start-portrait.jpg" media="(min-width: 800px)">
-            <img src="assets/images/our-start-landscape.jpg" alt="Our founder, Jane Doe">
+            <img data-src="assets/images/our-start-landscape.jpg" alt="Our founder, Jane Doe" class="lazyload">
           </picture>
         </div>
         <div class="row__medium-8 row__medium-8--smaller">
@@ -132,7 +134,7 @@
     </div>
   </div>
 
-  <div id="testimonials" class="page-section page-section--testimonials page-section--no-b-padding-til-large" data-matching-link="#testimonials-link">
+  <div id="testimonials" class="page-section page-section--testimonials page-section--no-b-padding-til-large lazyload" data-matching-link="#testimonials-link">
     <div class="wrapper wrapper--no-padding-til-large">
       <h2 class="section-title section-title--blue">
         <span class="icon icon--comment section-title__icon"></span>
@@ -145,7 +147,7 @@
           <div class="testimonial">
 
             <div class="testimonial__photo">
-              <img src="assets/images/testimonial-jane.jpg">
+              <img class="lazyload" data-src="assets/images/testimonial-jane.jpg">
             </div>
 
             <h3 class="testimonial__title">Jane Doe</h3>
@@ -222,5 +224,7 @@
   </div>
 
   <script src="temp/scripts/App.js"></script>
+
 </body>
 </html>
+
