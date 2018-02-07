@@ -6,7 +6,7 @@ var
 
 
 gulp.task('html', function() {
-	console.log('\nGulp is watching HTML.');
+	console.log('Gulp is watching HTML.\n');
 });
 
 
