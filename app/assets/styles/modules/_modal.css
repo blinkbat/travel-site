@@ -34,9 +34,14 @@
 		transform-origin: 100% 0;
 		color: $mainBlue;
 		cursor: pointer;
+		padding: 5px 7px;
+		padding-top: 0;
+		border: 1px solid $mainBlue;
+		font-weight: 300;
 
 		&:hover {
 			color: $mainOrange;
+			border: 1px solid $mainOrange;
 		}
 	}
 

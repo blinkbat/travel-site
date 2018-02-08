@@ -2,14 +2,26 @@ var
 	gulp = require('gulp'),
 	svgSprite = require('gulp-svg-sprite'),
 	rename = require('gulp-rename'),
-	del = require('del');
+	del = require('del')
+	//svg2png = require('gulp-svg2png')
+
 ;
 
 //object literal
 var config = {
+	shape: {
+		spacing: { padding: 1 }
+	},
 	mode: {
 		css: {
 			// remove .css from filename
+			variables: {
+				replaceSvgWithPng: function() {
+					return function(sprite, render) {
+						return render(sprite).split('.svg').join('.png');
+					}
+				}
+			},
 			sprite: 'sprite.svg',
 			render: {
 				css: {
@@ -30,8 +42,16 @@ gulp.task('createSprite', ['beginClean'], function() {
 		.pipe(gulp.dest('./app/temp/sprite/'));
 });
 
-gulp.task('copySpriteGfx', ['createSprite'], function () {
-	return gulp.src('./app/temp/sprite/css/**/*.svg')
+gulp.task('createPngCopy', ['createSprite'], function() {
+	return gulp.src('./app/temp/sprite/css/*.svg')
+	//.pipe(svg2png())
+	.pipe( gulp.dest('./app/temp/sprite/') );
+});
+
+
+gulp.task('copySpriteGfx', ['createPngCopy'], function () {
+	// select {multiple,filetypes} :)
+	return gulp.src('./app/temp/sprite/css/**/*.{svg,png}')
 	.pipe(gulp.dest('./app/assets/images/sprites'));
 });
 
@@ -47,4 +67,12 @@ gulp.task('endClean', ['copySpriteGfx', 'copySpriteCss'], function() {
 });
 
 // combine tasks into single
-gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteCss', 'copySpriteGfx', 'endClean']);
+gulp.task('icons', [
+	'beginClean', 
+	'createSprite', 
+	'createPngCopy', 
+	'copySpriteCss', 
+	'copySpriteGfx', 
+	'endClean'
+]);
+
