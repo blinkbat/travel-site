@@ -13,15 +13,16 @@ gulp.task('preview', function() {
 	browsersync.init({
 		notify: false,
 		server: {
-			baseDir: "dist"
+			baseDir: "docs"
 		},
 		browser: "google chrome"
 		
 	});
 });
 
-gulp.task('deleteDist', function() {
-	return del("./dist/");
+gulp.task('deleteDist', ['icons'], function() {
+	// usings 'docs' for GitHub Pages
+	return del("./docs/");
 });
 
 gulp.task('copyMiscFiles', ['deleteDist'], function() {
@@ -34,11 +35,11 @@ gulp.task('copyMiscFiles', ['deleteDist'], function() {
 		'!./app/assets/scripts/**',
 		'!./app/temp',
 		'!./app/temp/**'])
-	.pipe(gulp.dest('./dist/'));
+	.pipe(gulp.dest('./docs/'));
 });
 
 // refresh tasks before build
-gulp.task('optimizeImgs', ['deleteDist', 'icons'], function() {
+gulp.task('optimizeImgs', ['deleteDist'], function() {
 	return gulp.src([
 		'./app/assets/images/**/*',
 		// ! means exclude
@@ -50,19 +51,23 @@ gulp.task('optimizeImgs', ['deleteDist', 'icons'], function() {
 		interlaced: true,
 		multipass: true
 	}))
-	.pipe(gulp.dest('./dist/assets/images/'));
+	.pipe(gulp.dest('./docs/assets/images/'));
+});
+
+gulp.task('useMinTrigger', ['deleteDist'], function() {
+	gulp.start('useMin');
 });
 
 // refresh tasks before build
-gulp.task('useMin', ['deleteDist', 'styles', 'scripts'], function() {
+gulp.task('useMin', ['styles', 'scripts'], function() {
 	return gulp.src('./app/index.html')
 	.pipe(usemin({
 		css: [function() { return rev() }, function() { return cssnano() } ],
 		js:  [function() { return rev() }, function() { return uglify() } ]
 	}))
-	.pipe(gulp.dest('./dist/'));
+	.pipe(gulp.dest('./docs/'));
 });
 
-gulp.task('build', ['deleteDist', 'copyMiscFiles', 'optimizeImgs', 'useMin']);
+gulp.task('build', ['deleteDist', 'copyMiscFiles', 'optimizeImgs', 'useMinTrigger']);
 
 
